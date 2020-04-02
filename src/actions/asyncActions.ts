@@ -20,9 +20,12 @@ const searchAndDispatch: ThunkAction<Promise<void>, Store.SearchState, {
         const service = searchState.config.service;
         const index = searchState.config.index;
         const parameters = searchState.parameters;
+        console.log("**************************************************FORM LIB**************************************************");
+        console.log("Parameters : " + parameters);
         const searchCallback = searchState.config.searchCallback;
         const searchURI = buildSearchURI(searchState.config, parameters);
         const postBody = buildPostBody(parameters.searchParameters, parameters.input, searchParameterValidator, searchState.facets);
+        console.log("Post Body : " + JSON.stringify(postBody));
         let headers = new Headers({
             "api-key": searchState.config.queryKey,
             "Content-Type": "application/json",

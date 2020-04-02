@@ -30,20 +30,6 @@ export function buildPostBody(parameters: Store.SearchParameters | Store.Suggest
 }
 
 
-// function getFilterClauses(facets: Store.Facets): string {
-//     let filteredFacets = Object.keys(facets.facets).filter((key) => {
-//         return facets.facets[key].filterClause.length > 0;
-//     });
-//     let filters = filteredFacets.map((key) => {
-//         return facets.facets[key].filterClause;
-//     });
-//     const globalFilter = getGlobalFilter(facets.globalFilters);
-//     if (globalFilter) {
-//         filters.push(globalFilter);
-//     }
-//     return filters.join(" and ");
-// }
-
 function getFilterClauses(facets: Store.Facets): string {
     let filteredFacets = Object.keys(facets.facets).filter((key) => {
         return facets.facets[key].filterClause.length > 0;
@@ -58,7 +44,7 @@ function getFilterClauses(facets: Store.Facets): string {
             let arr = conditionKey.split("/");
             let parent = arr[0];
             let child = arr[1];
-            query = "(" + parent + "/any(elem : elem/" + child + " ";
+            query = " " + parent + "/any(elem : elem/" + child + " ";
         }
         if(query)
             return query + restConditionStr;
